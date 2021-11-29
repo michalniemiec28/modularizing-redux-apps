@@ -2,14 +2,14 @@ import React from "react";
 import { Provider } from "react-redux";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { configureStore } from './store';
+import { store } from './store';
 import Layout from "./components/Layout";
 import Characters from "./containers/Characters";
 import Planets from "./containers/Planets";
 import Starships from "./containers/Starships";
 
 const App = () => (
-  <Provider store={configureStore()}>
+  <Provider store={store}>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>

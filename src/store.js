@@ -1,17 +1,15 @@
 import { applyMiddleware, compose, createStore, combineReducers } from 'redux'
 import thunk from "redux-thunk";
-import characters from './reducers/charactersReducer'
-import planets from './reducers/planetsReducer'
-import starships from './reducers/starshipsReducer'
 
-export const configureStore = initialState => {
+const configureStore = initialState => {
   const middlewares = [thunk]
 
-  const createReducer = () =>
+  const staticReducers = {}
+
+  const createReducer = (asyncReducers) =>
     combineReducers({
-      characters,
-      planets,
-      starships
+      ...staticReducers,
+      ...asyncReducers
     })
 
   const composeEnhancers =
@@ -27,5 +25,13 @@ export const configureStore = initialState => {
     composeEnhancers(applyMiddleware(...middlewares))
   )
 
+  store.asyncReducers = {}
+  store.injectReducer = (key, asyncReducer) => {
+    store.asyncReducers[key] = asyncReducer
+    store.replaceReducer(createReducer(store.asyncReducers))
+  }
+
   return store
 }
+
+export const store = configureStore();
