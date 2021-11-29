@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getStarships } from "../actions/starshipsActions";
+import { getStarships } from "./Starships.module";
 
 class Starships extends React.Component {
   componentDidMount() {

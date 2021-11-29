@@ -2,7 +2,7 @@ import {
   FETCHING_PLANETS,
   FETCHING_PLANETS_SUCCESS,
   FETCHING_PLANETS_FAILURE
-} from "../actions/planetsActions";
+} from "../containers/Planets/Planets.module";
 
 const initialState = {
   fetching: false,

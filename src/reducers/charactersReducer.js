@@ -5,7 +5,7 @@ import {
   FETCHING_CHARACTER,
   FETCHING_CHARACTER_SUCCESS,
   FETCHING_CHARACTER_FAILURE
-} from "../actions/charactersActions";
+} from "../containers/Characters/Characters.module";
 
 const initialState = {
   fetchingCharacters: false,

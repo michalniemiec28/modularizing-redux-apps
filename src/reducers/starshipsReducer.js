@@ -2,7 +2,7 @@ import {
   FETCHING_STARSHIPS,
   FETCHING_STARSHIPS_SUCCESS,
   FETCHING_STARSHIPS_FAILURE
-} from "../actions/starshipsActions";
+} from "../containers/Starships/Starships.module";
 
 const initialState = {
   fetching: false,

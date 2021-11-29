@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { getPlanets } from "../actions/planetsActions";
+import { getPlanets } from "./Planets.module";
 
 class Planets extends React.Component {
   componentDidMount() {

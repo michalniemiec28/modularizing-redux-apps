@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
-import { getCharacters, getCharacter } from "../actions/charactersActions";
+import { getCharacters, getCharacter } from "./Characters.module";
 
 const Wrapper = styled.div`
   display: flex;
