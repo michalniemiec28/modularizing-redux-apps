@@ -1,7 +1,5 @@
 import React from "react";
-import { connect } from "react-redux";
 import styled from "styled-components";
-import { getCharacters, getCharacter } from "./Characters.module";
 
 const Wrapper = styled.div`
   display: flex;
@@ -13,7 +11,11 @@ const Item = styled.div`
 
 class Characters extends React.Component {
   componentDidMount() {
-    this.props.getCharacters();
+    const { characters, getCharacters } = this.props;
+
+    if (!characters.length) {
+      getCharacters();
+    }
   }
 
   render() {
@@ -43,19 +45,4 @@ class Characters extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  characters: state.characters.characters,
-  character: state.characters.character,
-  error: state.characters.error,
-  fetchingCharacters: state.characters.fetchingCharacters
-});
-
-const mapDispatchToProps = {
-  getCharacters,
-  getCharacter,
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Characters);
+export default Characters

@@ -1,10 +1,12 @@
 import React from "react";
-import { connect } from "react-redux";
-import { getPlanets } from "./Planets.module";
 
 class Planets extends React.Component {
   componentDidMount() {
-    this.props.getPlanets();
+    const { planets, getPlanets } = this.props;
+
+    if (!planets.length) {
+      getPlanets();
+    }
   }
 
   render() {
@@ -24,17 +26,4 @@ class Planets extends React.Component {
   }
 }
 
-const mapStateToProps = state => ({
-  planets: state.planets.planets,
-  error: state.planets.error,
-  fetching: state.planets.fetching
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  getPlanets: () => dispatch(getPlanets())
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Planets);
+export default Planets

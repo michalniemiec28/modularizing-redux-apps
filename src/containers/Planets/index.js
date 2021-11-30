@@ -1,6 +1,22 @@
-import planets from './Planets.module'
+import { connect } from "react-redux";
+import planetsReducer, { getPlanets } from "./Planets.module";
+import Planets from './Planets'
 import { store } from '../../store'
 
-store.injectReducer('planets', planets)
+store.injectReducer('planets', planetsReducer)
 
-export { default } from './Planets'
+const mapStateToProps = state => ({
+  planets: state.planets.planets,
+  error: state.planets.error,
+  fetching: state.planets.fetching
+});
+  
+const mapDispatchToProps = {
+  getPlanets,
+}
+  
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Planets);
+  
