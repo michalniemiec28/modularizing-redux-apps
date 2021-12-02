@@ -1,13 +1,15 @@
 import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export const FETCHING_CHARACTERS = "FETCHING_CHARACTERS";
-export const FETCHING_CHARACTERS_SUCCESS = "FETCHING_CHARACTERS_SUCCESS";
-export const FETCHING_CHARACTERS_FAILURE = "FETCHING_CHARACTERS_FAILURE";
-export const FETCHING_CHARACTER = "FETCHING_CHARACTER";
-export const FETCHING_CHARACTER_SUCCESS = "FETCHING_CHARACTER_SUCCESS";
-export const FETCHING_CHARACTER_FAILURE = "FETCHING_CHARACTER_FAILURE";
+const FETCHING_CHARACTERS = "FETCHING_CHARACTERS";
+const FETCHING_CHARACTERS_SUCCESS = "FETCHING_CHARACTERS_SUCCESS";
+const FETCHING_CHARACTERS_FAILURE = "FETCHING_CHARACTERS_FAILURE";
+const FETCHING_CHARACTER = "FETCHING_CHARACTER";
+const FETCHING_CHARACTER_SUCCESS = "FETCHING_CHARACTER_SUCCESS";
+const FETCHING_CHARACTER_FAILURE = "FETCHING_CHARACTER_FAILURE";
 
-export const getCharacters = () => dispatch => {
+const getCharacters = dispatch => {
   dispatch({ type: FETCHING_CHARACTERS });
   axios
     .get("https://swapi.dev/api/people")
@@ -25,7 +27,7 @@ export const getCharacters = () => dispatch => {
     });
 };
 
-export const getCharacter = (url) => dispatch => {
+const getCharacter = dispatch => url => {
   dispatch({ type: FETCHING_CHARACTER });
   axios
     .get(url)
@@ -42,6 +44,27 @@ export const getCharacter = (url) => dispatch => {
       });
     });
 };
+
+export const useCharacters = () => {
+  const dispatch = useDispatch();
+  const props = useSelector((state) => ({
+    characters: state.characters.characters,
+    character: state.characters.character,
+    error: state.characters.error,
+    fetchingCharacters: state.characters.fetchingCharacters
+  }))
+
+  useEffect(() => {
+    if (!props.characters.length) {
+      getCharacters(dispatch);
+    }
+  }, [])
+
+  return {
+    ...props,
+    getCharacter: getCharacter(dispatch),
+  }
+}
 
 const initialState = {
   fetchingCharacters: false,

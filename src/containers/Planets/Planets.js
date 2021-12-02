@@ -1,12 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { usePlanets } from "./Planets.module";
 
-const Planets = ({ planets, getPlanets, fetching }) => {
-  useEffect(() => {
-    if (!planets.length) {
-      getPlanets();
-    }
-  }, [])
-
+const Planets = () => {
+  const { planets, fetching } = usePlanets();
   
   if (fetching) {
     return <h2>Fetching star wars planets...</h2>;

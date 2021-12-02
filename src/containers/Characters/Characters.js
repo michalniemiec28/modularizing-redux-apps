@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styled from "styled-components";
+import { useCharacters } from "./Characters.module";
 
 const Wrapper = styled.div`
   display: flex;
@@ -9,13 +10,9 @@ const Item = styled.div`
   margin-left: 100px;
 `
 
-const Characters = ({ fetchingCharacters, characters, getCharacters, character, getCharacter }) => {
-  useEffect(() => {
-    if (!characters.length) {
-      getCharacters();
-    }
-  }, [])
-  
+const Characters = () => {
+  const { fetchingCharacters, characters, character, getCharacter } = useCharacters();
+    
   if (fetchingCharacters) {
     return <h2>Fetching star wars characters...</h2>;
   }

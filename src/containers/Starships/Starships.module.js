@@ -1,10 +1,12 @@
 import axios from "axios";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-export const FETCHING_STARSHIPS = "FETCHING_STARSHIPS";
-export const FETCHING_STARSHIPS_SUCCESS = "FETCHING_STARSHIPS_SUCCESS";
-export const FETCHING_STARSHIPS_FAILURE = "FETCHING_STARSHIPS_FAILURE";
+const FETCHING_STARSHIPS = "FETCHING_STARSHIPS";
+const FETCHING_STARSHIPS_SUCCESS = "FETCHING_STARSHIPS_SUCCESS";
+const FETCHING_STARSHIPS_FAILURE = "FETCHING_STARSHIPS_FAILURE";
 
-export const getStarships = () => dispatch => {
+const getStarships = dispatch => {
   dispatch({ type: FETCHING_STARSHIPS });
   axios
     .get("https://swapi.dev/api/starships")
@@ -21,6 +23,23 @@ export const getStarships = () => dispatch => {
       });
     });
 };
+
+export const useStarships = () => {
+  const dispatch = useDispatch();
+  const props = useSelector((state) => ({
+    starships: state.starships.starships,
+    error: state.starships.error,
+    fetching: state.starships.fetching
+  }))
+
+  useEffect(() => {
+    if (!props.starships.length) {
+      getStarships(dispatch);
+    }
+  }, [])
+
+  return props
+}
 
 const initialState = {
   fetching: false,

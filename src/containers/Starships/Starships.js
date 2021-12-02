@@ -1,11 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useStarships } from "./Starships.module";
 
-const Starships = ({ getStarships, starships, fetching }) => {
-  useEffect(() => {
-    if (!starships.length) {
-      getStarships();
-    }
-  }, [])
+const Starships = () => {
+  const { starships, fetching } = useStarships();
   
   if (fetching) {
     return <h2>Fetching star wars starships...</h2>;
