@@ -382,3 +382,21 @@ W reduxie mamy dostępne redux-devtools. W rozszerzeniu tym mamy szereg możliwo
 React pozwala na memoizowanie swojego stanu poprzez używanie hooków. Jest to sprawdzone API, które jest bardzo czytelne.
 
 W redux'ie za memoizację odpowiedzialne są selektory. Są to dużo bardziej rozbudowane funkcje, które moim zdaniem dają więcej możliwości, choć czasami mogą wydawać się trochę za bardzo rozbudowane.
+
+# Garść linków
+
+https://medium.com/@matthew.holman/what-is-redux-ducks-46bcb1ad04b7
+
+https://www.freecodecamp.org/news/scaling-your-redux-app-with-ducks-6115955638be/
+
+https://github.com/erikras/ducks-modular-redux
+
+https://redux.js.org/usage/code-splitting
+
+https://reactjs.org/docs/code-splitting.html
+
+https://github.com/jkeam/reduxsauce
+
+# Q&A
+
+To be continued...
