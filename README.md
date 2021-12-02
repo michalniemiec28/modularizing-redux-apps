@@ -381,4 +381,4 @@ W reduxie mamy dostępne redux-devtools. W rozszerzeniu tym mamy szereg możliwo
 
 React pozwala na memoizowanie swojego stanu poprzez używanie hooków. Jest to sprawdzone API, które jest bardzo czytelne.
 
-W redux'ie za memoizację odpowiedzialne są selektory. Są to dużo bardziej rozbudowane funkcje, które moim zdaniem dają więcej możliwości
+W redux'ie za memoizację odpowiedzialne są selektory. Są to dużo bardziej rozbudowane funkcje, które moim zdaniem dają więcej możliwości, choć czasami mogą wydawać się trochę za bardzo rozbudowane.

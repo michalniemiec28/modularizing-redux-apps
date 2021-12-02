@@ -1,29 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-class Planets extends React.Component {
-  componentDidMount() {
-    const { planets, getPlanets } = this.props;
-
+const Planets = ({ planets, getPlanets, fetching }) => {
+  useEffect(() => {
     if (!planets.length) {
       getPlanets();
     }
+  }, [])
+
+  
+  if (fetching) {
+    return <h2>Fetching star wars planets...</h2>;
   }
 
-  render() {
-    const { fetching, planets } = this.props;
-  
-    if (fetching) {
-      <h2>Fetching star wars planets...</h2>;
-    }
-  
-    return (
-      <div>
-        {planets.map((planet) => (
-          <div key={planet.name}>{planet.name}</div>
-        ))}
-      </div>
-    );
-  }
+  return (
+    <div>
+      {planets.map((planet) => (
+        <div key={planet.name}>{planet.name}</div>
+      ))}
+    </div>
+  );
 }
 
 export default Planets
